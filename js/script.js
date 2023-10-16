@@ -8,7 +8,7 @@
 Реализовать только при помощи JS
 
 4) Список фильмов на странице сформировать на основании данных из этого JS файла.
-Отсортировать их по алфавиту 
+Отсортировать их по алфавиту
 
 5) Добавить нумерацию выведенных фильмов */
 
@@ -39,7 +39,7 @@ img.forEach(i => {
 
 title.textContent = 'драма';
 
-bg.style.backgroundImage = 'url("img/bg.jpg")'; 
+bg.style.backgroundImage = 'url("img/bg.jpg")';
 
 list.innerHTML = '';
 
@@ -57,7 +57,7 @@ console.log(movieDB.movies); */
 
 /* Задания на урок:
 
-1) Реализовать функционал, что после заполнения формы и нажатия кнопки "Подтвердить" - 
+1) Реализовать функционал, что после заполнения формы и нажатия кнопки "Подтвердить" -
 новый фильм добавляется в список. Страница не должна перезагружаться.
 Новый фильм должен добавляться в movieDB.movies.
 Для получения доступа к значению input - обращаемся к нему как input.value;
@@ -67,7 +67,7 @@ P.S. Здесь есть несколько вариантов решения з
 
 3) При клике на мусорную корзину - элемент будет удаляться из списка (сложно)
 
-4) Если в форме стоит галочка "Сделать любимым" - в консоль вывести сообщение: 
+4) Если в форме стоит галочка "Сделать любимым" - в консоль вывести сообщение:
 "Добавляем любимый фильм"
 
 5) Фильмы должны быть отсортированы по алфавиту */
@@ -76,7 +76,7 @@ P.S. Здесь есть несколько вариантов решения з
 // Возьмите свой код из предыдущей практики
 
 document.addEventListener('DOMContentLoaded', () => {
-    
+
     const movieDB = {
         movies: [
             "Логан",
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "Скотт Пилигрим против..."
         ]
     };
-    
+
     const add = document.querySelector('.promo__adv'),
           title = document.querySelector('.promo__genre'),
           img = add.querySelectorAll('img'),
@@ -97,12 +97,12 @@ document.addEventListener('DOMContentLoaded', () => {
           checkbox = addForm.querySelector('[type="checkbox"]');
 
     addForm.addEventListener('submit', (event) => {
-        
+
         event.preventDefault();
 
         let newFilm = addInput.value;
         const favorite = checkbox.checked;
-        
+
         if (newFilm) {
             if (newFilm.length > 21) {
                 newFilm = `${newFilm.substring(0,22)}...`;
@@ -113,14 +113,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             movieDB.movies.push(newFilm);
             sortArr(movieDB.movies);
-        
+
             createMovieList(movieDB.movies, list);
         }
-        
+
 
         event.target.reset();
     });
-        
+
     const deleteAdv = (arr) => {
             arr.forEach(i => {
             i.remove();
@@ -134,14 +134,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const makeChanges = () => {
         title.textContent = 'драма';
-        
-        bg.style.backgroundImage = 'url("img/bg.jpg")'; 
+
+        bg.style.backgroundImage = 'url("img/bg.jpg")';
     };
-    
+
     function createMovieList(films, parent) {
         parent.innerHTML = '';
         sortArr(films);
-    
+
         films.forEach((film, i) => {
             parent.innerHTML += `<li class="promo__interactive-item">${i + 1} ${film} <div class="delete"></div>
                 </li>`;
@@ -160,22 +160,3 @@ document.addEventListener('DOMContentLoaded', () => {
     makeChanges();
     deleteAdv(img);
 });
-
-
-
-
-
-
-
-
-
-/* const form = document.querySelector('.add'),
-      btnForm = form.querySelectorAll('button');
-
-
-form.addEventListener('submit', () => {
-    movieDB.movies.push(input.value);
-    
-});
-
-console.log(movieDB.movies); */
